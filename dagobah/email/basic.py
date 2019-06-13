@@ -2,6 +2,7 @@
 
 from datetime import datetime
 # noinspection PyUnresolvedReferences
+from email.header import Header
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
@@ -64,7 +65,7 @@ class BasicEmail(EmailTemplate):
         content = premailer.transform(''.join(['<html><style>', css, '</style>',
                                                html, '</html>']))
         self.message_content = content
-        message.attach(MIMEText(content, 'html'))
+        message.attach(MIMEText(content, 'html', 'utf-8'))
         return message
 
     def _format_date(self, in_date):
